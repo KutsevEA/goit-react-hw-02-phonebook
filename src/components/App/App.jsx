@@ -9,31 +9,11 @@ import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Notification } from 'components/Notification/Notification';
 
-const LOCALE_STORAGE_KEY = 'contacts';
-
 export class App extends Component {
   state = {
     contacts: [],
     filter: '',
   };
-
-  componentDidMount() {
-    const savedContacts = JSON.parse(localStorage.getItem(LOCALE_STORAGE_KEY));
-    if (savedContacts) {
-      this.setState({
-        contacts: savedContacts,
-      });
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.contacts !== this.state.contacts) {
-      localStorage.setItem(
-        LOCALE_STORAGE_KEY,
-        JSON.stringify(this.state.contacts)
-      );
-    }
-  }
 
   filterChange = e => {
     this.setState({ filter: e.target.value });
